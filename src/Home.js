@@ -1,5 +1,7 @@
 import React from "react";
 import Herosection from "./Component/Herosection";
+import Services from "./Component/Services";
+import Trusted from "./Component/Trusted";
 
 const Home = () => {
 
@@ -10,6 +12,8 @@ const Home = () => {
     return (
         <>
            <Herosection mydata={data}/>
+           <Services/>
+           <Trusted/>
         </>
     )
 };
