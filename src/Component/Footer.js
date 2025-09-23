@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/Button";
@@ -145,10 +144,6 @@ const Footer = () => {
                             <h3>Call US</h3>
                             <a className="" href="tel:7447882030">+91 7447882030</a>
                         </div>
-
-                        
-
-                  
                 </div>
                 {/* footer bootom */}
                         <div className="footer-bottom--section">
