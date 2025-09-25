@@ -8,7 +8,7 @@ const Produtreducer = (state, action) => {
 
         case "SEND_DATA":
             const featureproductdata = action.payload.filter((v, i) => {
-                return v.fetured === true;
+                return v.featured === true;
             })
             return {
                 ...state,
