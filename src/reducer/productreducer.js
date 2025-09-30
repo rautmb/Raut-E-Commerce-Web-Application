@@ -16,11 +16,33 @@ const Produtreducer = (state, action) => {
                 Products: action.payload,
                 FetureProducts: featureproductdata
             }
+            
 
         case "ERROR":
             return {
                 ...state,
                 isError: true,
+            }
+
+            case "Single_Loading_Data":
+            return {
+                ...state,
+                isSingleLoading: true,
+            }
+
+        case "Send_singleproduct_data":
+           
+            return {
+                ...state,
+                isSingleLoading: false,
+                SingleProduct:action.payload,
+            }
+            
+
+        case "Send_Singleproduct_Error":
+            return {
+                ...state,
+                isSingleLoading: true,
             }
 
         default:

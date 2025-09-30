@@ -1,11 +1,32 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useProductcontext } from "./Context/Productcontext";
 
-const SingleProduct=()=>{
-return (
-  <>
-  <h1>This is a singleproduct page</h1>
-  </>
-)
+const API = "https://api.pujakaitem.com/api/products"
+
+const SingleProduct = () => {
+  const { getsingleproducts, isSingleLoading, SingleProduct } = useProductcontext();
+  const { id } = useParams();
+
+  useEffect(() => {
+    getsingleproducts(`${API}/${id}`);
+  }, [])
+
+  if (isSingleLoading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (!SingleProduct || !SingleProduct.name) {
+    return <h2>No product found</h2>;
+  }
+
+  const { id: raut, name, company, description, price, categoary, stock, start, reviews } = SingleProduct;
+  return (
+    <>
+      <h1>This is a singleproduct page{name}</h1>
+    </>
+  )
 }
 
 const Wrapper = styled.section`
