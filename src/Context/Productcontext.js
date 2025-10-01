@@ -54,7 +54,7 @@ const Approvider = ({ children }) => {
         getproducts(API);
     }, []);
 
-    let myname = "test";
+    // let myname = "test";
     return (
         <>
             <Appcontext.Provider value={{ ...state, getsingleproducts }}>
@@ -64,7 +64,7 @@ const Approvider = ({ children }) => {
     )
 }
 
-// use custome hook
+// use custom hook
 const useProductcontext = () => {
     return useContext(Appcontext);
 }
