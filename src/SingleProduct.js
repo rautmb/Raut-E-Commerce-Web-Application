@@ -10,6 +10,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { TbReplace } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
 import Star from "./Component/Star";
+import AddToCart from "./Component/AddToCart";
 
 const API = "https://api.pujakaitem.com/api/products"
 
@@ -89,6 +90,8 @@ const SingleProduct = () => {
                 <span>{company}</span>
               </p>
             </div>
+            <hr/>
+            {stock >0 && <AddToCart product={SingleProduct}/>}
 
           </div>
         </div>

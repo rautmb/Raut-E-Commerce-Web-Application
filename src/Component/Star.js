@@ -30,13 +30,15 @@ const Star=({stars,reviews})=>{
     const ratingstar=Array.from({length:5},(v,i)=>{
         let number=0.5+i;
 
-        debugger;
 
   return(
         <span key={i}>
             {
-                stars>=i+1 ? <FaStar className="icon"/> : stars>=number ? <FaStarHalfAlt className="icon"/> :(<AiOutlineStar className="icon"/>)
-
+                stars>=i+1 ? 
+                <FaStar className="icon"/> :
+                stars>=number ?
+                 <FaStarHalfAlt className="icon"/> :
+                 (<AiOutlineStar className="icon"/>)
             }
         </span>
     )
