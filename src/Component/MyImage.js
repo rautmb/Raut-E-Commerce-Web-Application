@@ -61,7 +61,7 @@ const MyImage = ({ images = [{ url: "" }] }) => {
                 {
                     images.map((v, i) => {
                         return (
-                            <figure>
+                            <figure key={i}>
                                 <img src={v.url} alt={v.filename} className="box-image--style" key={i} onClick={() => setImage(v)} />
                             </figure>
                         )
