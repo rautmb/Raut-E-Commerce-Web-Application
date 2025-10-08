@@ -38,17 +38,26 @@ const Filtercontext = ({ children }) => {
         dispatch({ type: "sorting_data", payload: userValue });
     }
 
+    //Filter function
+    const updateFilterValue=(e)=>{
+        let name=e.target.name;
+        let value=e.target.value;
+
+        return dispatch({type:"update_filtervalue",payload:{name,value}})
+    }
+
     //sort the filter
     useEffect(() => {
+        dispatch({type:'filter_products'});
         dispatch({ type: 'sort_the_products', payload: Products });
-    }, [state.sorting_value])
+    }, [state.sorting_value,state.filters])
 
     useEffect(() => {
         dispatch({ type: 'filter_loading', payload: Products });
     }, [Products])
 
     return (
-        <filter_context.Provider value={{ ...state, Setgridview, Setlistview, Sorting }}>
+        <filter_context.Provider value={{ ...state, Setgridview, Setlistview, Sorting ,updateFilterValue}}>
             {children}
         </filter_context.Provider>
     )

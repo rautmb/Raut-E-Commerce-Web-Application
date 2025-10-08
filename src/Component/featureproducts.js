@@ -121,8 +121,7 @@ const FetureProduct=()=>{
             <div className="container">
                 <div className="intro-data">check now</div>
                 <div className="common-heading">Our Feature Services</div>
-                <div className="grid grid-three-column">
-                    
+                <div className="grid grid-three-column">                   
                     {
                         FetureProducts.map((curElment)=>{
                             return <Product key={curElment.id}{...curElment}/>
