@@ -71,7 +71,6 @@ const Sort = () => {
                               <option value="z-a">Price(z-a)</option>
                           <option value="#" disabled></option>
                     </select>
-                    
                 </form>
             </div>
         </Wrapper>

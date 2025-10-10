@@ -4,10 +4,15 @@ const Filterreducer = (state, action) => {
 
     switch (action.type) {
         case 'filter_loading':
+            let priceArr = action.payload.map((curElem) => curElem.price);
+
+
+            let maxPrice = Math.max(...priceArr);
             return {
                 ...state,
                 filterproducts: [...action.payload],
-                allproducts: [...action.payload]
+                allproducts: [...action.payload],
+                filters: { ...state.filters, maxPrice, price: maxPrice },
             }
 
         case 'send_gridview':
@@ -30,6 +35,7 @@ const Filterreducer = (state, action) => {
                 sorting_value: sortvalue
             }
 
+        //dropdown select 
         case 'sort_the_products':
             let newSortData;
             // let tempSortProduct = [...action.payload];
@@ -63,6 +69,8 @@ const Filterreducer = (state, action) => {
             }
 
 
+
+        //input filter type
         case 'update_filtervalue':
             const { name, value } = action.payload;
 
@@ -75,20 +83,67 @@ const Filterreducer = (state, action) => {
                 }
             }
 
-            case "filter_products":
-                const{allproducts}=state;
-                let tempfilterproducts=[...allproducts];
-                const{text}=state.filters;
+        //input filter section
+        case "filter_products":
+            const { allproducts } = state;
+            let tempfilterproducts = [...allproducts];
+            const { text, category, company, color, price } = state.filters;
 
-                if(text)
-                {
-                   tempfilterproducts=tempfilterproducts.filter((v)=>{
+            if (text) {
+                tempfilterproducts = tempfilterproducts.filter((v) => {
                     return v.name.toLowerCase().includes(text);
-                   }) 
-                }
-                return {
+                })
+            }
+
+            if (category !== "all") {
+                tempfilterproducts = tempfilterproducts.filter((v) => {
+                    return v.category === category;
+                })
+            }
+
+            if (company !== "all") {
+                tempfilterproducts = tempfilterproducts.filter((v) => {
+                    return v.company.toLowerCase() === company.toLowerCase();
+                })
+            }
+
+            if (color !== "all") {
+                tempfilterproducts = tempfilterproducts.filter((v) => {
+                    return v.colors.includes(color);
+                })
+            }
+
+            if (price === 0) {
+                tempfilterproducts = tempfilterproducts.filter((v) => {
+                    return v.price == price;
+                })
+            }
+            else {
+                tempfilterproducts = tempfilterproducts.filter((v) => {
+                    return v.price <= price;
+                })
+            }
+
+            return {
                 ...state,
                 filterproducts: tempfilterproducts,
+            }
+
+        case "clear_filter":
+
+            return {
+                ...state,
+
+                filters: {
+                    ...state.filters,
+                    text: "",
+                    category: 'all',
+                    company: 'all',
+                    color: 'all',
+                    maxPrice: 0,
+                    price: state.filters.maxPrice,
+                    minPrice: state.filters.maxPrice,
+                },
             }
 
         default:

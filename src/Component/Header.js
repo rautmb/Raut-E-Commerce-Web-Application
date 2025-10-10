@@ -15,6 +15,15 @@ const Mainheader=styled.header`
   .logo {
     height: 5rem;
   }
+
+  .navheaderleft{
+  background:#9c9ca8;
+  padding:10px;
+  text-align:center;
+  color:black;
+  font-size:large;
+  font-weight:700;
+  }
 `;
 
 const Header=()=>{
@@ -22,7 +31,8 @@ const Header=()=>{
         <>
         <Mainheader>
             <NavLink>
-                <img src="./images/logo.png" alt="logo img"/>
+                {/* <img src="./images/logo.png" alt="logo img"/> */}
+                <div className="navheaderleft">Raut_Store</div>
             </NavLink>
             <Navbar/>
         </Mainheader>

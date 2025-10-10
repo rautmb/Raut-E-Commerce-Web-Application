@@ -12,6 +12,12 @@ const initialstate = {
     sorting_value: "lowest",
     filters: {
         text: "",
+        category: 'all',
+        company: 'all',
+        color: 'all',
+        maxPrice: 0,
+        price: 0,
+        minPrice: 0,
     },
 }
 
@@ -39,30 +45,36 @@ const Filtercontext = ({ children }) => {
     }
 
     //Filter function
-    const updateFilterValue=(e)=>{
-        let name=e.target.name;
-        let value=e.target.value;
+    const updateFilterValue = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
 
-        return dispatch({type:"update_filtervalue",payload:{name,value}})
+        return dispatch({ type: "update_filtervalue", payload: { name, value } })
+    }
+
+    //clear filter 
+    const clearfilter=()=>{
+        dispatch({type:'clear_filter'})
     }
 
     //sort the filter
     useEffect(() => {
-        dispatch({type:'filter_products'});
+        dispatch({ type: 'filter_products' });
         dispatch({ type: 'sort_the_products', payload: Products });
-    }, [state.sorting_value,state.filters])
+    }, [state.sorting_value, state.filters])
 
     useEffect(() => {
         dispatch({ type: 'filter_loading', payload: Products });
     }, [Products])
 
     return (
-        <filter_context.Provider value={{ ...state, Setgridview, Setlistview, Sorting ,updateFilterValue}}>
+        <filter_context.Provider value={{ ...state, Setgridview, Setlistview, Sorting, updateFilterValue,clearfilter }}>
             {children}
         </filter_context.Provider>
     )
 }
 
+//using customehook we send data
 export const useCustomeFilterContext = () => {
     return useContext(filter_context);
 }
