@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { createContext, useReducer, useContext, useEffect } from "react";
 import reducer from '../reducer/Cartreducer'
 

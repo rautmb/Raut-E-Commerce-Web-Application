@@ -1,4 +1,3 @@
-import React from "react"
 
 const Cartreducer = (state, action) => {
 
@@ -83,7 +82,7 @@ const Cartreducer = (state, action) => {
     //remove item
     if (action.type === "remove_item") {
         let updatedcart = state.cart.filter((v) =>
-            v.id != action.payload
+            v.id !== action.payload
         )
         return {
             ...state,
