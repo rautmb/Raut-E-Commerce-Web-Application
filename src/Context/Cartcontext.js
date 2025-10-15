@@ -23,7 +23,7 @@ const getLocaldata = () => {
 const initialstate = {
     //cart: [],
     cart: getLocaldata(),
-    total_amount: "",
+    total_price: "",
     total_item: "",
     shipping_fee: 5000,
 };
@@ -43,17 +43,30 @@ const Cartcontext = ({ children }) => {
     }
 
     //clear all filter data
-    const clearCartdata=()=>{
-        dispatch({type:"clear_filterdata"});
+    const clearCartdata = () => {
+        dispatch({ type: "clear_filterdata" });
+    }
+
+    //increment and decrement quantity
+
+    const setIncrease = (id) => {
+        dispatch({ type: "increment_quantity", payload: id });
+    }
+
+
+    const setDecrease = (id) => {
+        dispatch({ type: "decrease_quantity", payload: id });
     }
 
     //storing the data item after refreshing the page
     useEffect(() => {
+        dispatch({ type: "total_cartitem" });
+        dispatch({ type: "total_price" });
         localStorage.setItem("RautStore", JSON.stringify(state.cart));
     }, [state.cart])
 
     return (
-        <Cartcontextdata.Provider value={{ ...state, addtocart, removeItem,clearCartdata}}>
+        <Cartcontextdata.Provider value={{ ...state, addtocart, removeItem, clearCartdata, setIncrease, setDecrease }}>
             {children}
         </Cartcontextdata.Provider>
     )

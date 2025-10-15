@@ -5,16 +5,16 @@ import { FaTrash } from "react-icons/fa";
 import { useCustomecartcontext } from "../Context/Cartcontext";
 
 const CartItem = ({ id, name, color, amount, price, image }) => {
-    const{removeItem}=useCustomecartcontext();
+    const { removeItem, setIncrease, setDecrease } = useCustomecartcontext();
     //const [amount, setAmount] = useState(1);
 
-    const setIncrease = () => {
-        // amount < stock ? setAmount(amount + 1) : setAmount(stock);
-    }
+    // const setIncrease = (id) => {
+    //      amount < stock ? setAmount(amount + 1) : setAmount(stock);
+    // }
 
-    const setDecrease = () => {
-        // amount > 1 ? setAmount(amount - 1) : setAmount(1);
-    }
+    // const setDecrease = (id) => {
+    //      amount > 1 ? setAmount(amount - 1) : setAmount(1);
+    // }
     return (
         <div className="cart_heading grid grid-five-column">
             <div className="cart-image--name">
@@ -36,7 +36,7 @@ const CartItem = ({ id, name, color, amount, price, image }) => {
                 <p><Formateprice price={price} /></p>
             </div>
             {/* Quantity */}
-            <CartAmountToggle amount={amount} setIncrease={setIncrease} setDecrease={setDecrease} />
+            <CartAmountToggle amount={amount} setIncrease={() => setIncrease(id)} setDecrease={() => setDecrease(id)} />
 
             {/* subtotal */}
             <div className="cart-hide">
@@ -45,7 +45,7 @@ const CartItem = ({ id, name, color, amount, price, image }) => {
 
             {/* remove */}
             <div className="remove_icon">
-                <FaTrash onClick={()=>removeItem(id)} />
+                <FaTrash onClick={() => removeItem(id)} />
             </div>
         </div>
     )
