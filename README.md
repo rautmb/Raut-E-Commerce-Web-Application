@@ -1,4 +1,4 @@
-# Raut Technical React E-Commerce Website (In Progress)
+# Raut Technical React E-Commerce Website
 
 # This project is a React E-Commerce Website built with modern tools and libraries.
 
